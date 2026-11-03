@@ -82,11 +82,12 @@ describe('chapter 1: the optimal route', () => {
 describe('chapter 1: endings', () => {
   it('good: ledger but a shard missed (skip the scaffold)', () => {
     const s = run([...ATTIC, ...TO_CLINIC, ...DISGUISE, ...OWL_ALLEY, ...PANHANDLE.filter((x) => x.target !== 'scaffold'), ...PARLOR_LAB]);
+    expect(s.state.shards).toEqual([1, 2, 3, 4]);
     expect(s.state.over?.id).toBe('good');
   });
 
   it('bittersweet: no ledger', () => {
-    const s = run([...ATTIC, ...TO_CLINIC, ...DISGUISE, ...OWL_ALLEY, ...PANHANDLE, ...PARLOR_LAB.filter((x) => x.target !== 'ledger')]);
+    const s = run([...ATTIC, ...TO_CLINIC, ...DISGUISE, ...OWL_ALLEY, ...PANHANDLE, ...PARLOR_LAB.filter((x) => x.target !== 'ledger' && x.with !== 'kaleidoscope' || x.target === 'rain')]);
     expect(s.state.over?.id).toBe('bittersweet');
   });
 
@@ -126,7 +127,7 @@ describe('chapter 1: every death', () => {
   dies('alley-fire-escape', [...disguised, { verb: 'go', target: 'exit:owl' }, { verb: 'go', target: 'exit:alley' }, { verb: 'go', target: 'fireescape' }]);
   dies('tea', [...disguised, ...OWL_ALLEY, ...PANHANDLE, { verb: 'give', target: 'frontdoor', with: 'card' }, { verb: 'consume', target: 'teapot' }]);
   dies('gas-valve', [...disguised, ...OWL_ALLEY, { verb: 'go', target: 'exit:lotus' }, { verb: 'use', target: 'cellar', with: 'brasskey' }, { verb: 'go', target: 'exit:lab' }, { verb: 'open', target: 'valve' }]);
-  dies('kell-shot', [...disguised, ...OWL_ALLEY, ...PANHANDLE, ...PARLOR_LAB.slice(0, 1), ...PARLOR_LAB.slice(3, 8)]); // parlor route, Rain never woken
+  dies('kell-shot', [...disguised, ...OWL_ALLEY, ...PANHANDLE, ...PARLOR_LAB.filter((x) => x.target !== 'rain' && x.verb !== 'talk')]); // parlor route, Rain never woken
   dies('clock', Array.from({ length: 220 }, () => ({ verb: 'look' as const, target: 'chair' })));
 
   it('kell-shot: HIT Kell at the climax even with Rain awake', () => {
@@ -145,19 +146,51 @@ describe('chapter 1: every death', () => {
   });
 });
 
+describe('chapter 1: the kaleidoscope', () => {
+  it('shows nothing where no memory lives, and each shard only once', () => {
+    const s = run([...ATTIC]);
+    const fx = s.act({ verb: 'use', target: 'licence', with: 'kaleidoscope' });
+    expect(fx.some((e) => e.type === 'flashback')).toBe(false);
+    expect(text(s.act({ verb: 'use', target: 'self', with: 'kaleidoscope' }))).toMatch(/No memory lives here/);
+  });
+
+  it('the light show must be running for shard 3', () => {
+    const s = run([...ATTIC, ...TO_CLINIC, ...DISGUISE, { verb: 'go', target: 'exit:owl' }]);
+    s.act({ verb: 'use', target: 'projector', with: 'kaleidoscope' });
+    expect(s.state.shards).not.toContain(3);
+    s.act({ verb: 'use', target: 'projector' });
+    s.act({ verb: 'use', target: 'projector', with: 'kaleidoscope' });
+    expect(s.state.shards).toContain(3);
+  });
+
+  it('giving Rain the kaleidoscope also brings her back', () => {
+    const s = run([...ATTIC, ...TO_CLINIC, ...DISGUISE, ...OWL_ALLEY, ...PANHANDLE, { verb: 'give', target: 'frontdoor', with: 'card' }]);
+    s.act({ verb: 'give', target: 'rain', with: 'kaleidoscope' });
+    expect(s.state.flags.rainAwake).toBe(true);
+  });
+});
+
 describe('chapter 1: clock and hints', () => {
+  it('the clinic desk phone rings for you too', () => {
+    const s = run([...ATTIC, ...TO_CLINIC.slice(0, 6)]);
+    expect(s.state.scene).toBe('clinic');
+    const fx = s.act({ verb: 'use', target: 'phone' });
+    expect(text(fx)).toMatch(/your own|yours/);
+    expect(s.state.hintsUsed).toBe(1);
+  });
+
   it('warnings only after reading the stakes, and the payphone costs 10 minutes and counts a hint', () => {
     const s = run([...ATTIC, ...TO_CLINIC, { verb: 'go', target: 'exit:thirdeye' }]);
     const t = s.state.minutes;
     const fx = s.act({ verb: 'use', target: 'payphone' });
     expect(s.state.minutes - t).toBe(10);
     expect(s.state.hintsUsed).toBe(1);
-    expect(text(fx)).toMatch(/Dress the part/);
+    expect(text(fx)).toMatch(/Buy the shades/);
   });
 
   it('starts at 4:00 PM with intro text', () => {
     const { state, effects } = startChapter(ch1);
     expect(clockTime(ch1, state.minutes)).toBe('4:00 PM');
-    expect(text(effects)).toMatch(/warrant/);
+    expect(text(effects)).toMatch(/feel bad about it/);
   });
 });

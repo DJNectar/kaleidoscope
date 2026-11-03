@@ -20,9 +20,9 @@ test('walkthrough: the optimal route reaches the best ending', async ({ page }) 
   await play(page, BEST_ROUTE);
   const card = page.locator('.card.ending');
   await expect(card).toBeVisible();
-  await expect(card.locator('h2')).toHaveText('PSYCHIATRIST INDICTED IN PANHANDLE POISON PLOT');
+  await expect(card.locator('h2')).toHaveText('PSYCHIATRIST INDICTED IN PANHANDLE PLOT');
   await expect(card).toContainText('Fellowship');
-  await expect(card.locator('dd').nth(0)).toHaveText('5:57 PM');
+  await expect(card.locator('dd').nth(0)).toHaveText('6:02 PM');
   await expect(card.locator('dd').nth(1)).toHaveText('0');
   await expect(card.locator('dd').nth(3)).toHaveText('5 / 5');
   await page.screenshot({ path: 'screenshots/e2e-best-ending.png' });
@@ -31,8 +31,8 @@ test('walkthrough: the optimal route reaches the best ending', async ({ page }) 
 
 const endingCases: [string, ActionInput[], string][] = [
   ['good', [...ATTIC, ...TO_CLINIC, ...DISGUISE, ...OWL_ALLEY, ...PANHANDLE.filter((x) => x.target !== 'scaffold'), ...PARLOR_LAB], 'PSYCHIATRIST, NARCOTICS LIEUTENANT CHARGED'],
-  ['bittersweet', [...ATTIC, ...TO_CLINIC, ...DISGUISE, ...OWL_ALLEY, ...PANHANDLE, ...PARLOR_LAB.filter((x) => x.target !== 'ledger')], 'DOCTOR HELD AFTER BASEMENT FIRE ON MASONIC'],
-  ['lonely', [...ATTIC, ...TO_CLINIC, ...DISGUISE, ...OWL_ALLEY, { verb: 'go', target: 'exit:lotus' }, { verb: 'use', target: 'cellar', with: 'brasskey' }, { verb: 'go', target: 'exit:lab' }, { verb: 'open', target: 'crates' }, { verb: 'open', target: 'furnace' }, { verb: 'use', target: 'crates' }, { verb: 'go', target: 'exit:lotus' }], 'FIRE IN FOUNDATION BASEMENT; NO INJURIES REPORTED'],
+  ['bittersweet', [...ATTIC, ...TO_CLINIC, ...DISGUISE, ...OWL_ALLEY, ...PANHANDLE, ...PARLOR_LAB.filter((x) => (x.target !== 'ledger' && x.with !== 'kaleidoscope') || x.target === 'rain')], 'DOCTOR HELD AFTER BASEMENT FIRE'],
+  ['lonely', [...ATTIC, ...TO_CLINIC, ...DISGUISE, ...OWL_ALLEY, { verb: 'go', target: 'exit:lotus' }, { verb: 'use', target: 'cellar', with: 'brasskey' }, { verb: 'go', target: 'exit:lab' }, { verb: 'open', target: 'crates' }, { verb: 'open', target: 'furnace' }, { verb: 'use', target: 'crates' }, { verb: 'go', target: 'exit:lotus' }], 'FIRE IN FOUNDATION BASEMENT; NO INJURIES'],
 ];
 for (const [id, steps, headline] of endingCases) {
   test(`ending: ${id}`, async ({ page }) => {
@@ -47,7 +47,7 @@ const toHaight = [...ATTIC, ...TO_CLINIC];
 const disguised = [...toHaight, ...DISGUISE];
 const deathCases: [string, ActionInput[]][] = [
   ['Decorative Fire Escape', [{ verb: 'go', target: 'window' }]],
-  ['Blue Lightning', [...ATTIC, ...TO_CLINIC.slice(0, 3), { verb: 'consume', target: 'tab' }]],
+  ['A Very Nice Haircut', [...ATTIC, ...TO_CLINIC.slice(0, 3), { verb: 'consume', target: 'tab' }]],
   ['Ginger Ale', [...ATTIC, { verb: 'hit', target: 'eyedoor' }, { verb: 'consume', target: 'gingerale' }]],
   ['Flower Power', [...toHaight, { verb: 'go', target: 'street' }]],
   ['Tuesday', [...toHaight, { verb: 'go', target: 'exit:thirdeye' }, { verb: 'consume', target: 'brownies' }]],
@@ -57,7 +57,7 @@ const deathCases: [string, ActionInput[]][] = [
   ['Another Fire Escape', [...disguised, { verb: 'go', target: 'exit:owl' }, { verb: 'go', target: 'exit:alley' }, { verb: 'go', target: 'fireescape' }]],
   ['Herbal Tea', [...disguised, ...OWL_ALLEY, ...PANHANDLE, { verb: 'give', target: 'frontdoor', with: 'card' }, { verb: 'consume', target: 'teapot' }]],
   ['Spectacular', [...disguised, ...OWL_ALLEY, { verb: 'go', target: 'exit:lotus' }, { verb: 'use', target: 'cellar', with: 'brasskey' }, { verb: 'go', target: 'exit:lab' }, { verb: 'open', target: 'valve' }]],
-  ['Your Own Gun', [...disguised, ...OWL_ALLEY, ...PANHANDLE, PARLOR_LAB[0]!, ...PARLOR_LAB.slice(3, 8)]],
+  ['Your Own Gun', [...disguised, ...OWL_ALLEY, ...PANHANDLE, ...PARLOR_LAB.filter((x) => x.target !== 'rain' && x.verb !== 'talk')]],
 ];
 for (const [title, steps] of deathCases) {
   test(`death: ${title}`, async ({ page }) => {

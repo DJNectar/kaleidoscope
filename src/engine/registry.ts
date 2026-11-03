@@ -3,10 +3,11 @@ import type { Chapter } from './types';
 const chapters: Record<string, Chapter> = {};
 const order: string[] = [];
 
-export function registerChapter(ch: Chapter): void {
+/** Register a chapter. Unlisted chapters (dev/test) load by id but never appear as "next". */
+export function registerChapter(ch: Chapter, opts: { listed?: boolean } = {}): void {
   if (chapters[ch.id]) return;
   chapters[ch.id] = ch;
-  order.push(ch.id);
+  if (opts.listed !== false) order.push(ch.id);
 }
 
 export function getChapter(id: string): Chapter | undefined { return chapters[id]; }

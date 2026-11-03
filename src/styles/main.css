@@ -204,7 +204,7 @@ aside{display:flex;flex-direction:column;gap:22px;min-height:0;padding-top:4px}
 .card.ending{width:min(640px,100%);background:#f4efe2;border-width:4px;box-shadow:12px 12px 0 var(--black);font-family:Georgia,serif}
 .card.ending .masthead{display:flex;justify-content:space-between;border-bottom:4px double var(--black);padding-bottom:8px;margin-bottom:14px;font:700 13px var(--ui);letter-spacing:.3em}
 .card.ending h2{font:700 clamp(28px,4.6vw,44px)/1.02 var(--ui);letter-spacing:.01em}
-.card.ending p{font:16px/1.6 Georgia,serif;column-gap:24px}
+.card.ending p{font:16px/1.6 Georgia,serif;white-space:pre-line}
 .card.ending dl{display:grid;grid-template-columns:repeat(4,1fr);border-top:2px solid var(--black);border-bottom:2px solid var(--black);margin:6px 0 18px;padding:8px 0}
 .card.ending dt{font:500 10px var(--ui);letter-spacing:.24em;grid-row:1}
 .card.ending dd{margin:0;font:700 20px var(--ui);grid-row:2}

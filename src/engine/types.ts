@@ -102,6 +102,11 @@ export interface Scene {
   exits: Exit[];
   /** Scene-level fallback before the global generic lines. */
   fallback?: Partial<Record<Verb, Handler>>;
+  /**
+   * Runs before every action in this scene. Return text (or kill/win via ctx)
+   * to pre-empt the normal handler; return nothing to let the action proceed.
+   */
+  beforeAction?: Handler;
 }
 
 export interface Item {
@@ -205,5 +210,7 @@ export interface Ctx {
   cost(minutes: number): void;
   note(entryId: string): void;
   say(text: string, style?: 'normal' | 'warning' | 'system'): void;
+  /** Count a hint on the player's record. */
+  hint(): void;
   sound(id: string): void;
 }

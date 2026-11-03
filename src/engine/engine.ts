@@ -158,6 +158,7 @@ function makeCtx(ch: Chapter, d: GameState, input: ActionInput): CtxBundle {
     },
     say(text, style = 'normal') { b.effects.push({ type: 'narrate', text, style }); },
     sound(id) { b.effects.push({ type: 'sound', id }); },
+    hint() { d.hintsUsed += 1; },
   };
   return b;
 }
@@ -202,10 +203,19 @@ export function act(ch: Chapter, state: GameState, input: ActionInput): ActionRe
   const { verb } = input;
   const sceneBefore = d.scene;
 
-  const handler = findHandler(ch, d, target, input);
+  const pre = currentScene(ch, d).beforeAction;
+  const preText = pre ? asText(pre(b.ctx)) : [];
+  const preempted = preText.length > 0 || !!d.over;
+  const handler = preempted ? undefined : findHandler(ch, d, target, input);
   let text: string[];
-  if (handler) {
+  if (preempted) {
+    text = preText;
+  } else if (handler) {
     text = asText(handler(b.ctx));
+    // a handler that declines (no text, no effects) falls through to the generic line
+    if (text.length === 0 && b.effects.length === 0 && b.pendingScene === null && !d.over) {
+      text = [genericLine(ch, d, target, input)];
+    }
   } else {
     text = [genericLine(ch, d, target, input)];
   }

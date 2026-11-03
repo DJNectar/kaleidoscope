@@ -1,0 +1,6 @@
+Fonts bundled with Kaleidoscope (all SIL Open Font License 1.1, via Fontsource):
+- Shrikhand — Jonny Pinhorn
+- Oswald — Vernon Adams, Kalapi Gajjar, Cyreal
+- Courier Prime — Alan Dague-Greene / Quote-Unquote Apps
+- Special Elite — Astigmatic
+License text: https://openfontlicense.org

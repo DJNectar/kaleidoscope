@@ -16,8 +16,8 @@ Layout positions are given as **left→right, top→bottom** fractions of the fr
 ---
 
 ### 1. `attic`: mustard yellow + violet
-A cramped Victorian attic crash pad in late-afternoon sun. A small window with a **tie-dyed curtain** in the centre of the back wall, sunlight blazing through it in dusty beams. A slanted ceiling. A bare mattress on the floor, bottom centre. A turquoise kitchen chair with a rumpled trench coat over it, left. A fedora on a wall hook, right. A plate of stale toast with a butter knife on the floor beside the mattress. A closed paneled door, right of centre.
-- Window/curtain: top centre (43–57% across, 18–44% down)
+A cramped Victorian attic crash pad in late-afternoon sun. A small window with a **tie-dyed curtain** in the centre of the back wall, sunlight blazing through it in dusty beams. On the windowsill: **a small cardboard-and-brass toy kaleidoscope** and **a single pigeon**. A slanted ceiling. A bare mattress on the floor, bottom centre. A turquoise kitchen chair with a rumpled trench coat over it, left. A fedora on a wall hook, right. A plate of stale toast with a butter knife on the floor beside the mattress. A closed paneled door, right of centre.
+- Window/curtain: top centre (43–57% across, 18–42% down); kaleidoscope on the sill (46–52% across, about 43% down); pigeon on the sill to its right (52–57%)
 - Coat on chair: left (14–29% across, 53–80% down)
 - Fedora on hook: far right (83–95% across, 34–46% down)
 - Door: right of centre (70–80% across, 30–87% down)
@@ -35,7 +35,7 @@ A cluttered poster artist's studio in a Victorian flat. Blank posters clipped on
 - Frames: left · Darkroom curtain: right (70–87%) · Bottle shelf: far right (88–99%)
 
 ### 4. `haight`: coral red + teal ✅ anchor done
-Already made. Before export: replace the VW roundel on the van with a plain round badge, and keep the gray sedan in deep shadow.
+Already made. Before export: replace the VW roundel on the van with a plain round badge, and keep the gray sedan in deep shadow. Optional: a pigeon on top of the lamppost (top right).
 
 ### 5. `thirdeye`: violet + lime green
 The interior of a 1967 head shop. Strings of beads hanging in the doorway at left. A spinning rack of round sunglasses, left of centre. Racks of fringe vests. A glass counter at centre-right with a tray of brownies under a glass dome. Incense smoke curling through coloured light. Blacklight posters with abstract swirls and no text. An old payphone on the wall at far right. **Leave the space behind the counter clear** for Sunny.
@@ -53,15 +53,15 @@ A narrow brick alley behind a ballroom at dusk. An overflowing metal dumpster, l
 
 ### 9. `panhandle`: grass green + sunflower yellow
 A long grassy park strip under tall eucalyptus trees at golden hour. A wooden concert stage being built with raw scaffolding at the centre. A towering wall of speaker cabinets at the right. A folding table with a blank lotus-flower banner at the bottom left. A crowd gathering far in the distance (tiny, featureless shapes). A cluster of trees at far right where men will lurk.
-- Lotus table: bottom left (4–19%, 61–85% down) · Scaffold: centre (38–68%, 19–61% down) · Speaker wall: right (70–96%, 6–70% down)
+- Lotus table: bottom left (4–19%, 61–85% down) · Scaffold: centre (38–68%, 19–61% down) · Speaker wall: right (70–96%, 11–70% down), with a pigeon on top
 
 ### 10. `lotus`: gold + plum
 A grand Victorian house painted with a huge lotus mandala across its façade, centre-top. Wide front steps up to a carved door, centre. Slanted cellar doors with a heavy padlock at the lower right. An overgrown, too-perfect garden with prayer flags at the left. The sun low and red behind the house. An unsettling, too-perfect calm.
 - Front door: 44–56% across, 48–86% down · Cellar doors: 76–99% across, 69–90% down · Garden: left
 
 ### 11. `parlor`: plum + gold
-An opulent Victorian parlour turned meditation room. A velvet daybed at left. Silk floor cushions in a circle along the bottom. A low table with a brass teapot and two cups, centre. A carved writing desk by the window with a closed ledger book on it, right. Heavy drapes, candlelight, stained-glass colour. A narrow locked door at the far right. **Leave the daybed clear** for Rain's portrait, and space at centre for Sister Dawn.
-- Daybed: 10–40% across, 48–77% down · Teapot: 58–65%, 67–77% down · Desk + ledger: 64–86%, 37–70% down · Door: far right, 88–98%
+An opulent Victorian parlour turned meditation room. Silk floor cushions in a circle along the bottom. A low table with a brass teapot and two cups, centre. A carved writing desk by the window with a closed ledger book on it, right. Heavy drapes, candlelight, stained-glass colour. A narrow locked door at the far right. **Leave a clear standing space just left of the tea table** for Rain's portrait (30–46% across).
+- Teapot: 48–56% across, 64–75% down · Desk + ledger: 64–86%, 37–70% down · Door: far right, 88–98%
 
 ### 12. `lab`: acid green + black
 A clandestine chemistry lab in a stone basement. Wooden crates stacked high on the left. A huge old iron coal furnace with its door closed, centre. A gas line with a red valve wheel, right of the furnace. Glass beakers and tubing on a workbench along the upper right. Stone stairs coming down at the lower right. Slanted cellar doors with daylight at the top left. A single hanging bulb. Sickly green light and deep shadow. **Leave the stairs clear** for Dr. Kell's entrance.
@@ -84,9 +84,10 @@ Each one: *"Bust portrait, chest up, two-colour screenprint comic style matching
 | Sky Calder | grass green + sunflower | wiry, wild hair, soldering iron behind his ear |
 | Tiny | blood red + black | enormous biker, club jacket (no real club insignia) |
 | Sister Dawn | plum + gold | white dress, serene, unsettling smile |
-| Rain Whitcombe | teal + coral | 19, long dark hair, sharp and brave (asleep version + awake version) |
-| Dr. Ambrose Kell | gold + plum | silver hair, cardigan, velvet menace, slightly grotesque |
+| Rain Whitcombe | teal + coral | 19, long dark hair. Two versions: "Sister Rain" (white dress, paper lotus pin, serene, empty smile) and herself (furious, alive) |
+| Dr. Ambrose Kell | gold + plum | silver hair, cardigan with leather elbow patches, holding a revolver like a fountain pen, velvet menace |
+| The pigeon | any pair | one ordinary city pigeon with one bent tail feather, looking knowingly at the viewer |
 | Lt. Ray Bruno | steel blue + black | crew cut, bad sport coat, cop's eyes |
 
 ## Title screen
-> A weary detective in a fedora and trench coat at the centre, surrounded by radiating comic panels like kaleidoscope shards, each panel in a different two-colour ink pair: a Victorian house, a painted microbus, a lotus mandala, a smoking revolver, a cracked wristwatch, a crate of glowing tablets. Leave a blank banner area across the top for the logo. **16:9.**
+> A weary detective in a fedora and trench coat at the centre, surrounded by radiating comic panels like kaleidoscope shards, each panel in a different two-colour ink pair: a Victorian house, a painted microbus, a lotus mandala, a smoking revolver, a cracked wristwatch, a crate of glowing blue tablets, a toy kaleidoscope, a pigeon. Leave a blank banner area across the top for the logo. **16:9.**

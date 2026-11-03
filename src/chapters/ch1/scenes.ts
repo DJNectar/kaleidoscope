@@ -72,11 +72,11 @@ function thursdayCall(c: Ctx): string[] {
 // ════════════════════════════════════════ 1. ATTIC ════════════════════════════════════════
 const attic: Scene = {
   id: 'attic', name: 'The Attic',
-  art: { placeholder: 'ATTIC CRASH PAD', inks: inks('attic'), effects: ['dust'] },
+  art: { image: '/art/ch1/attic.webp', placeholder: 'ATTIC CRASH PAD', inks: inks('attic'), effects: ['dust'] },
   onEnter: (c) => (c.visited('attic') ? 'The attic. It still smells of patchouli and somebody else\'s decisions.' : undefined),
   hotspots: [
     {
-      id: 'mattress', name: 'mattress', shape: { poly: [[260, 520], [640, 505], [700, 600], [230, 615]] },
+      id: 'mattress', name: 'mattress', shape: { poly: [[285, 470], [300, 430], [700, 425], [780, 480], [790, 520], [700, 540], [300, 545], [280, 520]] },
       verbs: {
         look: (c) => {
           if (c.flag('foundPage')) return 'A bare mattress with a you-shaped dent in it, like the outline the police draw, only softer.';
@@ -91,7 +91,7 @@ const attic: Scene = {
       },
     },
     {
-      id: 'window', name: 'tie-dye curtain', shape: { rect: [430, 110, 140, 150] },
+      id: 'window', name: 'tie-dye curtain', shape: { rect: [415, 110, 145, 165] },
       verbs: {
         look: () => 'A tie-dyed curtain in orange and purple spirals. The sun comes through it and lies across the floorboards like a dog that has decided this is its spot now. Behind it, a small window onto a fire escape and the backs of the Victorians on Ashbury.',
         open: (c) => { c.set('curtainOpen'); return 'You pull the curtain aside. Light hits you like an unpaid bill. Outside, a fire escape painted to match the house: lacy, lovely, wrought by hand. Four floors down, a garden waits.'; },
@@ -103,7 +103,7 @@ const attic: Scene = {
       },
     },
     {
-      id: 'kaleidoscope', name: 'kaleidoscope on sill', shape: { rect: [455, 262, 60, 22] },
+      id: 'kaleidoscope', name: 'kaleidoscope on sill', shape: { rect: [445, 288, 55, 30] },
       visible: (s) => !s.inventory.includes('kaleidoscope'),
       verbs: {
         look: () => 'On the windowsill, next to the pigeon, a child\'s kaleidoscope: a cardboard tube with brass caps. You have the feeling you put it there carefully. You have the feeling someone asked you to.',
@@ -114,9 +114,9 @@ const attic: Scene = {
         use: { none: () => 'You\'d have to pick it up first. That\'s the thing about most things.' },
       },
     },
-    pigeon({ rect: [520, 240, 50, 40] }, 'on the windowsill, behind the curtain'),
+    pigeon({ rect: [520, 268, 55, 50] }, 'on the windowsill, behind the curtain'),
     {
-      id: 'coat', name: 'coat on chair', shape: { poly: [[140, 330], [280, 330], [290, 500], [130, 500]] },
+      id: 'coat', name: 'coat on chair', shape: { poly: [[60, 285], [150, 285], [200, 400], [190, 520], [80, 545], [55, 450]] },
       visible: (s) => !s.flags.coatTaken,
       verbs: {
         look: () => 'Your trench coat, folded over a kitchen chair with more care than you\'ve ever shown it. Something weighs down the pockets.',
@@ -128,14 +128,14 @@ const attic: Scene = {
       },
     },
     {
-      id: 'chair', name: 'chair', shape: { rect: [140, 500, 150, 40] },
+      id: 'chair', name: 'chair', shape: { rect: [200, 395, 48, 155] },
       verbs: {
         look: () => 'A kitchen chair, painted turquoise by someone who loved turquoise more than chairs.',
         go: () => 'You sit for a moment. The room spins at a respectful distance. You get up.',
       },
     },
     {
-      id: 'fedora', name: 'fedora', shape: { poly: [[832, 262], [858, 248], [862, 222], [890, 212], [920, 222], [926, 250], [948, 264], [932, 286], [868, 288], [838, 280]] },
+      id: 'fedora', name: 'fedora', shape: { poly: [[890, 190], [925, 170], [965, 180], [985, 215], [975, 265], [945, 300], [905, 295], [885, 250]] },
       verbs: {
         look: (c) => {
           if (c.flag('foundLicence')) return 'Your hat: gray felt, the kind worn by men who expect at any moment to be photographed in the rain.';
@@ -151,7 +151,7 @@ const attic: Scene = {
       },
     },
     {
-      id: 'toast', name: 'plate of toast', shape: { rect: [540, 480, 100, 36] },
+      id: 'toast', name: 'plate of toast', shape: { rect: [690, 520, 150, 55] },
       verbs: {
         look: (c) => c.has('knife')
           ? 'Two slices of toast, cold since at least Thursday, and no knife. You took the knife. The toast seems to know.'
@@ -165,7 +165,7 @@ const attic: Scene = {
       },
     },
     {
-      id: 'door', name: 'door', kind: 'exit', shape: { poly: [[700, 190], [800, 215], [800, 545], [700, 505]] },
+      id: 'door', name: 'door', kind: 'exit', shape: { poly: [[745, 180], [875, 150], [880, 500], [750, 470]] },
       verbs: {
         look: (c) => c.flag('atticOpen') ? 'The attic door, unlatched. A narrow stair goes down into the smell of incense and cabbage.' : 'A paneled door with no handle on this side and a keyhole full of paint. Locked from the outside. Somebody wanted you to sleep in.',
         open: (c) => c.flag('atticOpen') ? 'It\'s open. The stairs go down. So, gently, does your mood.' : 'Locked from the outside. You rattle it. It rattles back, with less conviction.',
@@ -194,12 +194,12 @@ const attic: Scene = {
 // ════════════════════════════════════════ 2. LANDING ════════════════════════════════════════
 const landing: Scene = {
   id: 'landing', name: 'Second-Floor Landing',
-  art: { placeholder: 'SECOND-FLOOR LANDING', inks: inks('landing') },
+  art: { image: '/art/ch1/landing.webp', placeholder: 'SECOND-FLOOR LANDING', inks: inks('landing') },
   onEnter: (c) => c.visited('landing') ? undefined
     : 'A narrow landing that smells of incense, cabbage and turpentine in roughly equal parts, like a committee. Peeling wallpaper, a bare bulb burning in the daytime, a radiator wearing a flyer like a hat. One door on this floor has a giant eye painted on it, and the eye is looking at you.',
   hotspots: [
     {
-      id: 'flyer', name: 'flyer on radiator', shape: { rect: [90, 360, 160, 120] },
+      id: 'flyer', name: 'flyer on radiator', shape: { rect: [145, 312, 105, 70] },
       verbs: {
         look: () => 'A hand-printed flyer: **FREE GATHERING — THE PANHANDLE — SUNDOWN SATURDAY — THE MORNING GHOSTS — gifts of peace from the LOTUS FOUNDATION.** Gifts. Free. Sundown. The hair on the back of your neck stands up and starts taking notes.',
         take: () => 'You leave it. Half the telephone poles in the Haight are wearing the same one.',
@@ -207,14 +207,14 @@ const landing: Scene = {
       },
     },
     {
-      id: 'radiator', name: 'radiator', shape: { rect: [80, 470, 190, 90] },
+      id: 'radiator', name: 'radiator', shape: { rect: [85, 385, 230, 190] },
       verbs: {
         look: () => 'An iron radiator painted silver, stone cold. August in San Francisco: it will be on any day now.',
         hit: () => 'CLANG. The radiator sings a single note. Downstairs, someone yells "Heavy!" in genuine admiration.',
       },
     },
     {
-      id: 'eyedoor', name: 'Moondog\'s door', kind: 'exit', shape: { poly: [[560, 150], [700, 160], [700, 540], [560, 520]] },
+      id: 'eyedoor', name: 'Moondog\'s door', kind: 'exit', shape: { rect: [405, 150, 165, 315] },
       verbs: {
         look: () => 'A door painted with one enormous eye, its iris made of tiny swirling galaxies. Under it, in small letters: *MOONDOG — POSTERS — KNOCK LIKE YOU MEAN IT.* The eye seems to have been expecting you, and to be slightly disappointed.',
         open: (c) => c.flag('moondogOpen') ? 'The door\'s on the latch now. Moondog trusts you that far.' : 'Locked. Behind it, someone stops breathing.',
@@ -228,15 +228,15 @@ const landing: Scene = {
       },
     },
     {
-      id: 'stairsup', name: 'stairs up', kind: 'exit', shape: { rect: [800, 60, 160, 200] },
+      id: 'stairsup', name: 'stairs up', kind: 'exit', shape: { poly: [[590, 250], [690, 250], [700, 420], [580, 430]] },
       verbs: { look: () => 'Back up to the attic. Not much up there but toast and a pigeon.' },
     },
     {
-      id: 'stairsdown', name: 'stairs down', kind: 'exit', shape: { poly: [[760, 300], [980, 300], [980, 625], [720, 625]] },
+      id: 'stairsdown', name: 'stairs down', kind: 'exit', shape: { poly: [[705, 425], [830, 425], [870, 570], [705, 575]] },
       verbs: { look: () => 'Steep stairs down to the front door and Ashbury Street. Late sun lies on the bottom steps like something spilled.' },
     },
     {
-      id: 'bulb', name: 'bare bulb', shape: { rect: [380, 20, 60, 80] },
+      id: 'bulb', name: 'bare bulb', shape: { rect: [470, 50, 45, 65] },
       verbs: {
         look: () => 'A single bare bulb, burning in the daytime. Somebody in this house is very afraid of the dark, or very fond of the electric company.',
         take: () => 'You\'d burn your fingers. You\'re saving them for later.',
@@ -259,12 +259,12 @@ function moondogPhoto(c: Ctx): string {
 
 const studio: Scene = {
   id: 'studio', name: 'Moondog\'s Studio',
-  art: { placeholder: 'MOONDOG\'S STUDIO', inks: inks('studio') },
+  art: { image: '/art/ch1/studio.webp', placeholder: 'MOONDOG\'S STUDIO', inks: inks('studio') },
   onEnter: (c) => c.visited('studio') ? undefined
     : 'Moondog\'s flat is a print shop with a bed somewhere underneath it. Silkscreen frames lean on every wall, posters dry on clotheslines strung corner to corner, and a black curtain in the corner leaks red light, like a darkroom with a secret.',
   hotspots: [
     {
-      id: 'moondog', name: 'Moondog', kind: 'person', shape: { rect: [420, 200, 140, 340] },
+      id: 'moondog', name: 'Moondog', kind: 'person', shape: { rect: [430, 230, 140, 270] },
       verbs: {
         look: () => 'Moondog: thin, barefoot, paint to the elbows, eyes that keep checking the window as if the window might check back. He\'s the kind of paranoid that turns out to be right a little too often.',
         talk: (c) => {
@@ -284,18 +284,18 @@ const studio: Scene = {
       },
     },
     {
-      id: 'posters', name: 'drying posters', shape: { rect: [80, 40, 840, 120] },
+      id: 'posters', name: 'drying posters', shape: { rect: [0, 45, 890, 160] },
       verbs: {
         look: () => 'Posters drying on the lines like laundry: the Morning Ghosts in melting letters; a lotus spilling light over the Panhandle; and one you can\'t stop looking at. It shows tonight\'s gathering under a sky full of smoke, and in the corner, a man in a fedora standing beside a furnace. "I don\'t draw the future, man," Moondog says without turning round. "It just keeps posing for me."',
         take: () => '"Those are wet, man! And that one isn\'t finished. It hasn\'t happened yet."',
       },
     },
     {
-      id: 'frames', name: 'silkscreen frames', shape: { rect: [60, 280, 260, 260] },
+      id: 'frames', name: 'silkscreen frames', shape: { rect: [20, 285, 330, 290] },
       verbs: { look: () => 'Wooden frames stretched with silk: stencils of eyes, flowers and, half-finished, a pigeon with one bent tail feather. You decide not to ask.' },
     },
     {
-      id: 'darkroom', name: 'darkroom curtain', shape: { rect: [700, 190, 170, 330] },
+      id: 'darkroom', name: 'darkroom curtain', shape: { rect: [640, 120, 190, 430] },
       verbs: {
         look: () => 'A heavy black curtain with red light leaking round its edges.',
         open: () => '"Not the darkroom, man!" You let the curtain fall. Somewhere behind it, a print quietly ruins itself.',
@@ -303,14 +303,14 @@ const studio: Scene = {
       },
     },
     {
-      id: 'shelf', name: 'shelf of bottles', shape: { rect: [880, 220, 110, 200] },
+      id: 'shelf', name: 'shelf of bottles', shape: { rect: [835, 370, 165, 200] },
       verbs: {
         look: () => 'A shelf of brown chemical bottles with handwritten labels: DEVELOPER, STOP, a coffee can marked RENT MONEY, and a green bottle labelled GINGER ALE in Moondog\'s handwriting.',
         take: () => 'You don\'t need any of these. Not even the rent money. Especially not the rent money.',
       },
     },
     {
-      id: 'gingerale', name: 'ginger ale', shape: { rect: [905, 300, 40, 60] },
+      id: 'gingerale', name: 'ginger ale', shape: { rect: [915, 365, 42, 115] },
       verbs: {
         look: () => 'A green glass bottle labelled GINGER ALE in grease pencil. It\'s flat, and it has the faint vinegar breath of a darkroom. You are very, very thirsty.',
         consume: (c) => c.die('fixer'),
@@ -426,12 +426,12 @@ function buyDisguise(c: Ctx): string {
 
 const thirdeye: Scene = {
   id: 'thirdeye', name: 'The Third Eye',
-  art: { placeholder: 'THE THIRD EYE', inks: inks('thirdEye'), effects: ['smoke'] },
+  art: { image: '/art/ch1/thirdeye.webp', placeholder: 'THE THIRD EYE', inks: inks('thirdEye'), effects: ['smoke'] },
   onEnter: (c) => c.visited('thirdeye') ? undefined
     : 'The Third Eye head shop: beads in the doorway, blacklight posters, incense thick enough to lean on. Behind the glass counter a cheerful man in a velvet vest is restacking a tray of brownies as if they were the crown jewels of a small, happy nation.',
   hotspots: [
     {
-      id: 'sunny', name: 'Sunny', kind: 'person', shape: { rect: [430, 190, 140, 260] },
+      id: 'sunny', name: 'Sunny', kind: 'person', shape: { rect: [590, 160, 130, 160] },
       verbs: {
         look: () => 'Sunny, proprietor: muttonchops, a grin like a sales pitch, and a peace medallion the size of a hubcap.',
         talk: (c) => {
@@ -448,7 +448,7 @@ const thirdeye: Scene = {
       },
     },
     {
-      id: 'sunglasses', name: 'sunglasses rack', shape: { rect: [140, 220, 130, 220] },
+      id: 'sunglasses', name: 'sunglasses rack', shape: { rect: [200, 175, 110, 335] },
       verbs: {
         look: () => 'A spinning rack of round sunglasses in every colour a hangover can see. A tag: SHADES + BEADS, $5, THE WHOLE LOOK.',
         take: (c) => c.flag('bought') ? 'You\'ve got a pair. One new you is plenty.' : '"Five bucks, man," Sunny calls without looking. "Love is free. Shades are five."',
@@ -456,15 +456,15 @@ const thirdeye: Scene = {
       },
     },
     {
-      id: 'beads', name: 'bead curtain', shape: { rect: [20, 100, 100, 420] },
+      id: 'beads', name: 'bead curtain', shape: { rect: [20, 85, 115, 420] },
       verbs: { look: () => 'Strings of glass beads in the doorway that click softly whenever anyone breathes, like a polite abacus.', go: () => 'You part the beads. On the other side is the same shop. Very spiritual.' },
     },
     {
-      id: 'vests', name: 'fringe vests', shape: { rect: [290, 160, 120, 300] },
+      id: 'vests', name: 'fringe vests', shape: { rect: [330, 240, 200, 250] },
       verbs: { look: () => 'Suede vests with fringe to the knee. You picture yourself in one, and the picture is so vivid you have to sit down in your mind.', take: () => 'A man has to draw the line somewhere. The line is fringe.' },
     },
     {
-      id: 'brownies', name: 'tray of brownies', shape: { rect: [600, 400, 150, 60] },
+      id: 'brownies', name: 'tray of brownies', shape: { rect: [610, 320, 150, 100] },
       verbs: {
         look: () => 'A tray of brownies under a glass dome. A card reads SPECIAL. Somebody has underlined SPECIAL three times, then added a small drawing of a planet.',
         consume: (c) => c.die('brownie'),
@@ -472,11 +472,11 @@ const thirdeye: Scene = {
       },
     },
     {
-      id: 'incense', name: 'incense', shape: { rect: [780, 300, 60, 140] },
+      id: 'incense', name: 'incense', shape: { rect: [530, 230, 60, 100] },
       verbs: { look: () => 'Sandalwood smoking in a brass elephant. The smoke curls through the coloured light and spells out nothing at all, very beautifully.', consume: () => 'No.' },
     },
     {
-      id: 'payphone', name: 'payphone', shape: { rect: [880, 150, 90, 220] },
+      id: 'payphone', name: 'payphone', shape: { rect: [895, 185, 90, 215] },
       verbs: {
         look: () => 'A payphone in a nook, its directory chewed to pulp. As you look at it, it starts to ring. "It\'s for you, man," Sunny says without looking up, the way people in the Haight say most things.',
         use: { none: thursdayCall, money: thursdayCall },
@@ -491,12 +491,12 @@ const thirdeye: Scene = {
 // ════════════════════════════════════════ 6. FREE CLINIC ════════════════════════════════════════
 const clinic: Scene = {
   id: 'clinic', name: 'Free Clinic',
-  art: { placeholder: 'FREE CLINIC, CLAYTON ST', inks: inks('clinic') },
+  art: { image: '/art/ch1/clinic.webp', placeholder: 'FREE CLINIC, CLAYTON ST', inks: inks('clinic') },
   onEnter: (c) => c.visited('clinic') ? undefined
     : 'The free clinic on Clayton: a Victorian parlour gone to war. Kids on every chair, some crying, some bleeding, and a few just smiling at the ceiling as if it had told them good news. A bald man in robes ladles soup. A doctor in a white coat moves through it all like a tugboat through fog.',
   hotspots: [
     {
-      id: 'fields', name: 'Dr. Fields', kind: 'person', shape: { rect: [560, 170, 130, 330] },
+      id: 'fields', name: 'Dr. Fields', kind: 'person', shape: { rect: [560, 180, 120, 220] },
       verbs: {
         look: () => 'Dr. Nora Fields: forty, a gray streak, sleeves rolled to the elbow, eyes that have seen everything twice this week. She hasn\'t sat down since June.',
         talk: (c) => c.flag('fieldsTested')
@@ -517,7 +517,7 @@ const clinic: Scene = {
       },
     },
     {
-      id: 'ananda', name: 'Brother Ananda', kind: 'person', shape: { rect: [180, 220, 140, 280] },
+      id: 'ananda', name: 'Brother Ananda', kind: 'person', shape: { rect: [160, 300, 95, 200] },
       verbs: {
         look: () => 'A bald man in saffron robes, glasses mended with tape, ladling soup with the precision of a man who used to measure things for a living. Brother Ananda. Once Professor Lev Adler, until the university decided his experiments were the wrong kind of interesting.',
         talk: (c) => {
@@ -529,7 +529,7 @@ const clinic: Scene = {
       },
     },
     {
-      id: 'soup', name: 'soup pot', shape: { rect: [320, 380, 120, 100] },
+      id: 'soup', name: 'soup pot', shape: { rect: [255, 310, 115, 110] },
       verbs: {
         look: () => 'A dented pot of lentil soup the size of a bathtub. It smells like the first honest thing you\'ve met all day.',
         consume: (c) => c.flag('ateSoup') ? 'Ananda smiles. "Others are hungrier, friend."' : (c.set('ateSoup'), 'Ananda hands you a bowl. It\'s hot, salty and perfect. A little of your brain comes back from wherever it\'s been and sits down beside you.'),
@@ -537,7 +537,7 @@ const clinic: Scene = {
       },
     },
     {
-      id: 'kids', name: 'waiting room', kind: 'person', shape: { rect: [740, 300, 240, 220] },
+      id: 'kids', name: 'waiting room', kind: 'person', shape: { rect: [690, 320, 310, 250] },
       verbs: {
         look: () => 'Kids, fifteen to nineteen: barefoot, sunburned, bad trips and cut feet and nowhere else to go. Most wear paper lotus pins. Three of them sit very straight, smiling at the ceiling, and none of the three can tell you their own name. They don\'t seem to mind at all.',
         talk: () => 'A boy with a lotus pin tells you, very politely, that he would like a haircut, and that Dr. Kell says tonight will be "the Communion of the Summer." He shows you his ticket: a cream card with a gold lotus. He can\'t remember where he got it. He\'s delighted about this.',
@@ -551,7 +551,7 @@ const clinic: Scene = {
       },
     },
     {
-      id: 'phone', name: 'desk phone', shape: { rect: [700, 400, 60, 50] },
+      id: 'phone', name: 'desk phone', shape: { rect: [470, 300, 60, 40] },
       verbs: {
         look: () => 'A black telephone on Dr. Fields\'s desk, buried under files. It starts to ring the moment you look at it. Fields doesn\'t glance up. "It\'s for you," she says. "It\'s been for you all afternoon."',
         use: { none: thursdayCall },
@@ -560,7 +560,7 @@ const clinic: Scene = {
       },
     },
     {
-      id: 'cabinet', name: 'medicine cabinet', shape: { rect: [60, 120, 100, 200] },
+      id: 'cabinet', name: 'medicine cabinet', shape: { rect: [20, 70, 165, 240] },
       verbs: {
         look: () => 'A steel medicine cabinet, padlocked, with a handwritten sign: NO DRUGS IN HERE. GO AWAY. LOVE, NORA.',
         open: () => 'Padlocked. Also, you\'re not that kind of patient.',
@@ -568,7 +568,7 @@ const clinic: Scene = {
       },
     },
     {
-      id: 'eyechart', name: 'eye chart', shape: { rect: [440, 60, 80, 140] },
+      id: 'eyechart', name: 'eye chart', shape: { rect: [390, 138, 68, 112] },
       verbs: { look: () => 'An eye chart. The top letter is E. The bottom line reads either F-R-E-E L-O-V-E or you need glasses. Probably both.' },
     },
   ],
@@ -578,12 +578,12 @@ const clinic: Scene = {
 // ════════════════════════════════════════ 7. ELECTRIC OWL ════════════════════════════════════════
 const owl: Scene = {
   id: 'owl', name: 'The Electric Owl',
-  art: { placeholder: 'THE ELECTRIC OWL BALLROOM', inks: inks('owl'), effects: ['dust'] },
+  art: { image: '/art/ch1/owl.webp', placeholder: 'THE ELECTRIC OWL BALLROOM', inks: inks('owl'), effects: ['dust'] },
   onEnter: (c) => c.visited('owl') ? undefined
     : 'The Electric Owl ballroom, the afternoon after the Kaleidoscope Test: paper cups, feathers, one shoe, a ladder, a hall so wrecked it looks as if the party is still going on in a room next door you can\'t quite find. A kid up the ladder fiddles with a projector rig. On the stage, a woman with a voice like a freight train is running scales.',
   hotspots: [
     {
-      id: 'kev', name: 'Kev on ladder', kind: 'person', shape: { rect: [640, 120, 110, 330] },
+      id: 'kev', name: 'Kev on ladder', kind: 'person', shape: { rect: [585, 265, 135, 230] },
       verbs: {
         look: () => 'Kev "Kaleido" Malone: skinny, freckled, nineteen at the outside, up a ladder with a gel frame in his teeth. Every time the door bangs he nearly falls off.',
         talk: (c) => {
@@ -601,7 +601,7 @@ const owl: Scene = {
       },
     },
     {
-      id: 'projector', name: 'projector rig', shape: { rect: [770, 200, 160, 140] },
+      id: 'projector', name: 'projector rig', shape: { rect: [760, 130, 180, 370] },
       verbs: {
         look: (c) => c.flag('lightShow')
           ? 'The oil wheel turns, and the far wall blooms magenta and electric blue: shapes that split and rejoin like cells, or rumours. It looks like the inside of something. It looks like the inside of your kaleidoscope.'
@@ -624,7 +624,7 @@ const owl: Scene = {
       },
     },
     {
-      id: 'lu', name: 'Lu Fontaine', kind: 'person', shape: { rect: [260, 200, 120, 280] },
+      id: 'lu', name: 'Lu Fontaine', kind: 'person', shape: { rect: [210, 240, 110, 120] },
       verbs: {
         look: () => 'Lu Fontaine, front woman of Satchel & the Strays: sequins at four in the afternoon, a laugh that could stop traffic and a voice that could start it again.',
         talk: (c) => (c.flag('metLu') ? LU.after : (c.set('metLu'), LU.first)),
@@ -632,11 +632,11 @@ const owl: Scene = {
       },
     },
     {
-      id: 'stage', name: 'stage', shape: { rect: [140, 340, 340, 140] },
+      id: 'stage', name: 'stage', shape: { rect: [130, 360, 320, 50] },
       verbs: { look: () => 'The stage where the Kaleidoscope Test happened: gaffer tape, a broken tambourine, a single sandal standing upright as if its owner simply evaporated. Maybe they did. It was that kind of night.' },
     },
     {
-      id: 'debris', name: 'party wreckage', shape: { rect: [380, 500, 400, 110] },
+      id: 'debris', name: 'party wreckage', shape: { rect: [100, 420, 480, 150] },
       verbs: {
         look: () => 'Paper cups, every one of them sticky. A punch bowl with a ladle and a crust. You do not drink from the punch bowl. You learned that lesson on Thursday; you just don\'t remember the class.',
         consume: () => 'You have some idea what was in that punch. You keep your mouth shut, literally.',
@@ -644,7 +644,7 @@ const owl: Scene = {
       },
     },
     {
-      id: 'stagedoor', name: 'stage door', kind: 'exit', shape: { rect: [40, 160, 90, 300] },
+      id: 'stagedoor', name: 'stage door', kind: 'exit', shape: { rect: [30, 310, 60, 95] },
       verbs: { look: () => 'A steel door marked STAGE — NO EXIT. Behind it, the alley. Kev glances at it, then very carefully doesn\'t.' },
     },
   ],
@@ -657,7 +657,7 @@ const owl: Scene = {
 // ════════════════════════════════════════ 8. ALLEY ════════════════════════════════════════
 const alley: Scene = {
   id: 'alley', name: 'Alley Behind the Owl',
-  art: { placeholder: 'ALLEY BEHIND THE OWL', inks: inks('alley'), outdoor: true, effects: ['flicker'] },
+  art: { image: '/art/ch1/alley.webp', placeholder: 'ALLEY BEHIND THE OWL', inks: inks('alley'), outdoor: true, effects: ['flicker'] },
   onEnter: (c) => {
     const base = c.visited('alley') ? '' : 'A brick alley that smells of beer, rain and worse. A dumpster overflowing with last night. A fire escape zigzagging up the wall like a nervous signature. ';
     if (isDisguised(c)) return base + 'By the stage door, a man the size of a refrigerator in a biker\'s jacket smokes and watches a hippie in purple shades. That\'s you. He looks away, bored, which is the nicest thing anyone has done for you all day.';
@@ -671,7 +671,7 @@ const alley: Scene = {
   },
   hotspots: [
     {
-      id: 'tiny', name: 'Tiny', kind: 'person', shape: { rect: [700, 140, 160, 380] },
+      id: 'tiny', name: 'Tiny', kind: 'person', shape: { rect: [610, 250, 90, 300] },
       verbs: {
         look: () => 'Tiny. The name is a joke; the arms are not. His knuckles have words tattooed on them. You can read LOVE on the left. You decide not to read the right.',
         talk: () => '"Beat it, flower child," Tiny says, without looking at you. "Doc\'s orders. Nobody back here today." Doc. Kell. Tiny knows exactly whose muscle he is.',
@@ -683,7 +683,7 @@ const alley: Scene = {
       },
     },
     {
-      id: 'dumpster', name: 'dumpster', shape: { rect: [240, 330, 270, 190] },
+      id: 'dumpster', name: 'dumpster', shape: { rect: [150, 320, 250, 280] },
       verbs: {
         look: (c) => c.flag('gotKey') ? 'The dumpster. You\'ve already been in it. Your coat will be talking about it for weeks.' : 'An overflowing steel dumpster, lid half-open, last night spilling out of it. If a frightened kid had to hide something in a hurry, it\'d be right here.',
         open: (c) => {
@@ -696,7 +696,7 @@ const alley: Scene = {
       },
     },
     {
-      id: 'fireescape', name: 'fire escape', kind: 'exit', shape: { poly: [[560, 40], [680, 40], [680, 300], [560, 300]] },
+      id: 'fireescape', name: 'fire escape', kind: 'exit', shape: { rect: [490, 0, 180, 330] },
       verbs: {
         look: () => 'A fire escape bolted to the wall with what appear to be thumbtacks. Rust has eaten the bottom rungs to lace. On the top landing, a pigeon with one bent tail feather is watching. Of course it is.',
         go: (c) => c.die('alley-fire-escape'),
@@ -705,7 +705,7 @@ const alley: Scene = {
       },
     },
     {
-      id: 'stagedoor', name: 'stage door', kind: 'exit', shape: { rect: [880, 170, 100, 330] },
+      id: 'stagedoor', name: 'stage door', kind: 'exit', shape: { rect: [700, 180, 110, 380] },
       verbs: { look: () => 'The Owl\'s stage door, propped open with a brick. A caged bulb above it flickers as if trying to tell you something in a code it never learned.' },
     },
   ],
@@ -715,7 +715,7 @@ const alley: Scene = {
 // ════════════════════════════════════════ 9. PANHANDLE ════════════════════════════════════════
 const panhandle: Scene = {
   id: 'panhandle', name: 'The Panhandle',
-  art: { placeholder: 'THE PANHANDLE', inks: inks('panhandle'), outdoor: true },
+  art: { image: '/art/ch1/panhandle.webp', placeholder: 'THE PANHANDLE', inks: inks('panhandle'), outdoor: true },
   onEnter: (c) => {
     const base = c.visited('panhandle') ? '' : 'The Panhandle: a long strip of park under eucalyptus trees, the grass already filling with blankets. A wooden stage half-built at the far end, a wall of speakers rising behind it like a cathedral for people who don\'t believe in cathedrals. Bikers walk the edges. A folding table under a lotus banner hands out cream cards. ';
     if (isDisguised(c)) return base + 'By the trees, two men in bad sport coats scan the crowd. Their eyes pass over your shades and beads and keep going.';
@@ -729,7 +729,7 @@ const panhandle: Scene = {
   },
   hotspots: [
     {
-      id: 'scaffold', name: 'stage scaffold', shape: { rect: [380, 120, 300, 260] },
+      id: 'scaffold', name: 'stage scaffold', shape: { rect: [385, 265, 290, 220] },
       verbs: {
         look: (c) => c.state.shards.includes(5)
           ? 'The scaffold of the stage. Rain stood right there, yelling at you. You\'d give a great deal to be yelled at by her again.'
@@ -745,7 +745,7 @@ const panhandle: Scene = {
       },
     },
     {
-      id: 'calder', name: 'Sky Calder', kind: 'person', shape: { rect: [140, 260, 120, 230] },
+      id: 'calder', name: 'Sky Calder', kind: 'person', shape: { rect: [310, 330, 75, 140] },
       verbs: {
         look: () => 'Sterling "Sky" Calder at the sound desk: wiry, wild-haired, a soldering iron behind his ear, tuning a wall of speakers like a cathedral organ. The most famous underground chemist in California, and what he\'s worried about is the bass.',
         talk: (c) => (c.flag('calderAlly') ? CALDER.ally : CALDER.first),
@@ -758,12 +758,12 @@ const panhandle: Scene = {
       },
     },
     {
-      id: 'speakers', name: 'speaker wall', shape: { rect: [700, 70, 260, 370] },
+      id: 'speakers', name: 'speaker wall', shape: { rect: [655, 210, 175, 345] },
       verbs: { look: () => 'A wall of speaker cabinets three storeys high, stacked, strapped and wired by hand. When the Morning Ghosts start, people in Oakland will feel it in their fillings and not know why they\'re smiling.' },
     },
-    pigeon({ rect: [800, 30, 50, 38] }, 'on top of the speaker wall'),
+    pigeon({ rect: [680, 180, 45, 40] }, 'on top of the speaker wall'),
     {
-      id: 'volunteer', name: 'Lotus volunteer', kind: 'person', shape: { rect: [40, 380, 150, 150] },
+      id: 'volunteer', name: 'Lotus volunteer', kind: 'person', shape: { rect: [45, 440, 260, 110] },
       verbs: {
         look: () => 'A folding table under a lotus banner. Behind it, a girl with flowers in her hair and a smile pinned on like a name badge, handing out cream cards.',
         talk: (c) => {
@@ -775,7 +775,7 @@ const panhandle: Scene = {
       },
     },
     {
-      id: 'saints', name: 'bikers', kind: 'person', shape: { rect: [290, 400, 160, 140] },
+      id: 'saints', name: 'bikers', kind: 'person', shape: { rect: [380, 320, 90, 120] },
       verbs: {
         look: () => 'Bikers doing security: leather, beards, folded arms. They keep the stage clear and the crowd happy, and have no idea what one of their own is mixed up in.',
         talk: () => '"Tiny?" one says. "Ain\'t seen him all week. Moonlighting for some doctor." He spits, thoughtfully. "The club don\'t like that."',
@@ -783,7 +783,7 @@ const panhandle: Scene = {
       },
     },
     {
-      id: 'narcs', name: 'men in sport coats', kind: 'person', shape: { rect: [880, 450, 110, 140] },
+      id: 'narcs', name: 'men in sport coats', kind: 'person', shape: { rect: [880, 310, 120, 200] },
       verbs: {
         look: () => 'Two men in sport coats so bad they must be government issue. Bruno\'s people. They\'re watching the crowd, the Lotus table and the street, in that order.',
         talk: (c) => { c.die('bruno-panhandle'); return 'You stroll up to Bruno\'s men. You\'ve always been brave. That\'s one word for it.'; },
@@ -791,7 +791,7 @@ const panhandle: Scene = {
       },
     },
     {
-      id: 'crowd', name: 'crowd', shape: { rect: [460, 420, 400, 120] },
+      id: 'crowd', name: 'crowd', shape: { rect: [190, 335, 110, 50] },
       verbs: { look: () => 'Blankets, babies, dogs, a man with a bubble machine. Hundreds already, thousands by sundown. Every one of them is about to be offered a free gift, and every one of them is going to say thank you.' },
     },
   ],

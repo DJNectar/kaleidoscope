@@ -9,10 +9,13 @@
     "preview": "vite preview --port 4173 --strictPort",
     "test": "vitest run",
     "test:e2e": "playwright test",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "art": "node scripts/palette-lock.ts",
+    "hotspots": "vite --open /tools/hotspot-editor/"
   },
   "devDependencies": {
     "@playwright/test": "^1.63.0",
+    "sharp": "^0.35.5",
     "typescript": "5.9",
     "vite": "^8.3.5",
     "vitest": "^5.1.0"

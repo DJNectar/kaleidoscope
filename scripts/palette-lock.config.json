@@ -1,0 +1,14 @@
+{
+  "attic":     { "inks": ["#e2aa2b", "#5c3b8e"], "extra": ["#3a9fa0"], "lock": false },
+  "landing":   { "inks": ["#d9682b", "#4b6584"], "lock": false },
+  "studio":    { "inks": ["#ec3f8c", "#a8d81e"], "extra": ["#f0a050"], "lock": false },
+  "thirdeye":  { "inks": ["#7a3fb0", "#8fd14f"], "lock": false },
+  "clinic":    { "inks": ["#9cc7e4", "#e8442e"], "lock": false },
+  "owl":       { "inks": ["#d6249f", "#2a5cff"], "lock": false },
+  "alley":     { "inks": ["#3d1d5c", "#a3121b"], "lock": false },
+  "panhandle": { "inks": ["#4f9a3a", "#f5c518"], "lock": false },
+  "haight":    { "inks": ["#f0644e", "#1f9e9a"], "lock": false },
+  "lotus":     { "inks": ["#d4a017", "#6b2d5c"], "lock": false },
+  "parlor":    { "inks": ["#6b2d5c", "#d4a017"], "lock": false },
+  "lab":       { "inks": ["#a8d81e", "#1a1a1a"], "lock": false }
+}

@@ -14,7 +14,7 @@ Scoped from Chris's secure-build protocol; items that don't apply to a static si
 | Headers | `vercel.json`: strict CSP (`default-src 'self'`, no inline script, no inline style blocks, `frame-ancestors 'none'`), HSTS, `Referrer-Policy: strict-origin-when-cross-origin`, `X-Content-Type-Options: nosniff`, `X-Frame-Options: DENY`, Permissions-Policy. `vite preview` sends the same CSP, so the Playwright suite fails on any CSP violation. |
 | URL input | `?chapter=` is only accepted if it matches a registered chapter id. |
 | Analytics / personal data | None collected. Quebec Law 25: nothing to disclose; no privacy policy or deletion path needed. If analytics is ever added it must be anonymous and disclosed. |
-| Dependencies | Runtime: `zod` only. Dev: `vite`, `typescript`, `vitest`, `@playwright/test`. Lockfile committed; Dependabot enabled. `sharp` will be added (dev-only) for the palette-lock script in milestone 3. |
+| Dependencies | Runtime: `zod` only. Dev: `vite`, `typescript`, `vitest`, `@playwright/test`. Lockfile committed; Dependabot enabled. `sharp` 0.35.5 (dev-only, build-time image processing for `scripts/palette-lock.ts`; upgraded from 0.34 to clear a high-severity libvips advisory). It never ships to players. |
 
 ## N/A for this project
 Auth, sessions, cookies, rate limiting, database access, uploads, payments, server-side AI keys, backups (no server data).

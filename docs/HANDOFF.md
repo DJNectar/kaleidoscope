@@ -8,19 +8,16 @@
 - Art is still placeholder (labelled boxes). Haight & Ashbury hotspots are laid out on Chris's anchor image (not yet in the repo).
 - Not on GitHub yet. No deploy yet.
 
+## Done in milestone 3 so far
+- Draft art for 8 scenes in `art-source/ch1/`, turned into game images in `public/art/ch1/` by `npm run art` (scripts/palette-lock.ts + scripts/palette-lock.config.json). The drafts run with `"lock": false` (trim + letterbox only), because a full colour lock turned their soft light into speckle. For final art, remove `"lock": false` per scene and tune `extra` colours.
+- Hotspots fitted to the drawings for those 8 scenes.
+- Hotspot editor: `npm run hotspots`, which opens `/tools/hotspot-editor/` (dev only, not in the build). It has a before/after toggle that shows the source next to the processed image.
+- Living effects + time-of-day grading in `src/ui/effects.ts` (dust, smoke, fog, flicker, oil wheel once the light show is on, drapes; off under reduced motion).
+
 ## Next work, in order
-1. **docs/ART_LIST.md**: update it for the new story. Attic: a small brass-and-cardboard kaleidoscope on the
-   windowsill, plus a pigeon on the sill. Parlor: Rain stands at the low tea table (centre), not on a daybed.
-   Pigeons also appear on the Haight lamppost top and on top of the Panhandle speaker wall.
-2. **Milestone 3** (brief §9.3, §11.2b, §11.5):
-   - a dev-only hotspot editor (`tools/hotspot-editor/`, excluded from the production build): load a scene
-     image, click to draw polygons in the 0–1000 × 0–625 space, export to scene data;
-   - `scripts/palette-lock.ts` with `sharp` as a dev dependency, plus a before/after view in the editor;
-   - living effects (dust, smoke, flicker, fog, oil wheel, drapes), time-of-day grading on outdoor scenes,
-     the death crack (exists, could be refined), and the shard kaleidoscope burst (exists);
-   - drop-in art: set `art.image` on a scene in `src/chapters/ch1/scenes.ts`.
-3. **Milestone 4 polish** (§9.4): title screen with an animated oil-wheel background, iPad layout check,
-   reduced-motion check, "hold Space to highlight hotspots" (exists), full keyboard play.
+1. Art for the remaining scenes (lotus, parlor, lab; haight needs Chris's anchor file; alley again at a wider shape), then fit hotspots with the editor.
+2. Milestone 4 polish (§9.4): interface pass from the approved mockup, title screen with oil-wheel background, iPad layout check, character portraits placed in scenes.
+3. Milestone 5: optional audio, then the Vercel deploy after the pre-deploy checklist in SECURITY.md.
 
 ## Rules
 - Keep `npm test`, `npm run test:e2e` and `npx tsc --noEmit` green. If you change the route,

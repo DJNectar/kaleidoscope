@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hotspot Editor (dev)</title>
+<link rel="stylesheet" href="./editor.css">
+</head>
+<body>
+<header>
+  <b>Hotspot editor</b>
+  <label>Scene <select id="scene"></select></label>
+  <label><input type="checkbox" id="compare"> Show source (before palette-lock)</label>
+  <span class="hint">Pick a hotspot, click points on the art, <kbd>Enter</kbd> to finish, <kbd>Backspace</kbd> to undo a point, <kbd>Esc</kbd> to cancel.</span>
+</header>
+<main>
+  <div id="stage"><img id="art" alt=""><svg id="svg" viewBox="0 0 1000 625" preserveAspectRatio="none"></svg></div>
+  <aside>
+    <h3>Hotspots</h3><ul id="list"></ul>
+    <h3>Export</h3>
+    <p class="hint">Paste each line over that hotspot's <code>shape:</code> in <code>src/chapters/ch1/scenes.ts</code>.</p>
+    <textarea id="out" rows="14" readonly></textarea>
+    <button id="copy">Copy</button>
+  </aside>
+</main>
+<script type="module" src="./editor.ts"></script>
+</body>
+</html>

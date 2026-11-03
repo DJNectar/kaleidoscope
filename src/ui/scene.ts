@@ -2,6 +2,7 @@ import { nameOf, visibleHotspots } from '../engine/engine';
 import type { Chapter, GameState, Hotspot, Shape } from '../engine/types';
 import { SPACE_H, SPACE_W } from '../engine/types';
 import { h, s } from './dom';
+import { SceneEffects } from './effects';
 
 export interface SceneHandlers {
   click(id: string): void;
@@ -33,13 +34,14 @@ export class SceneView {
   private svg: SVGSVGElement;
   private sceneId = '';
   private names = new Map<string, string>();
+  private fx = new SceneEffects();
 
   constructor(private ch: Chapter, private on: SceneHandlers) {
     this.art = h('div', { class: 'art' });
     this.svg = s('svg', { class: 'hot', viewBox: `0 0 ${SPACE_W} ${SPACE_H}`, preserveAspectRatio: 'none' });
     this.caption = h('div', { class: 'caption' });
     this.label = h('div', { class: 'label', hidden: true });
-    this.view = h('div', { class: 'view' }, this.art, this.svg, this.caption, this.label);
+    this.view = h('div', { class: 'view' }, this.art, this.fx.tint, this.fx.shade, this.fx.canvas, this.svg, this.caption, this.label);
     this.el = h('div', { class: 'frame' }, this.view);
     this.view.addEventListener('pointerleave', () => this.showLabel(null));
   }
@@ -58,6 +60,7 @@ export class SceneView {
       this.el.style.setProperty('--ink2', scene.art.inks[1]);
     }
     this.renderHotspots(visibleHotspots(this.ch, state), state);
+    this.fx.update(scene, state);
   }
 
   private renderArt(image: string | undefined, placeholder: string, inks: [string, string]): void {

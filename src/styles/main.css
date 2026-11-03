@@ -80,6 +80,9 @@ header{grid-column:1/-1;display:flex;align-items:center;gap:22px;min-width:0}
     linear-gradient(160deg,var(--a) 0 36%,var(--paper) 36% 64%,var(--b) 64% 100%)}
 .ph span{font:700 clamp(12px,1.4vw,18px)/1.1 var(--ui);letter-spacing:.14em;color:var(--black);background:var(--paper);padding:6px 10px;border:2px solid var(--black);box-shadow:3px 3px 0 var(--black)}
 .ph small{margin-top:6px;font:italic 12px var(--type);color:var(--black);background:var(--paper);padding:1px 6px}
+.fx,.fx-tint,.fx-shade{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
+.fx-tint{mix-blend-mode:color;transition:opacity 1.5s,background 1.5s;opacity:0}
+.fx-shade{background:#0a0614;mix-blend-mode:multiply;transition:opacity 1.5s;opacity:0}
 .hot{position:absolute;inset:0;width:100%;height:100%;z-index:2}
 .hs{cursor:pointer;outline:none}
 .hs polygon{fill:rgba(255,246,216,0);stroke:transparent;stroke-width:3;stroke-dasharray:8 6;stroke-linejoin:round;vector-effect:non-scaling-stroke;transition:fill .15s}
